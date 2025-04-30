@@ -1,0 +1,2235 @@
+{
+	"info": {
+		"_postman_id": "a382f0fd-517c-423d-9f98-bb4a3556aa74",
+		"name": "TEMPLATE 70 - Services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "smCreateService2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "92704e63-15b6-45ad-9ecc-2f5b505ee2a4",
+						"exec": [
+							"pm.execution.setNextRequest('smSetStatus')"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf0d387d-5e6a-4fcb-9373-e4dcebe62ab1",
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"service_id\", jsonData.params.linkedServiceId);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "53fbe850-f26a-48e2-9e97-45a2b123e911",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/Services\" method=\"smCreateService2\">\n\t<params>\n\t\t<entityObj>{\"name\":\"Services\",\"title\":\"h_servicename\",\"description\":\"h_servicedescription\",\"entityColumn\":\"h_pk_serviceid\",\"linkedColumn\":\"h_linked_service_id\"}</entityObj>\n\t\t<inputTitle>Bob Service Green</inputTitle>\n\t\t<inputDescription>Service Description</inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\n            \"h_fk_type\":\"business\",\n            \"h_fk_servicecategory\":\"Human Resource\",\n            \"h_portfolio_status\":\"Catalog\",\n            \"h_mbid\":\"ServiceDesk\",\n            \"h_service_catalog_domain\":\"education\",\n            \"h_icon\":\"fa-compress\",\n            \"h_access\":\"open\",\n            \"h_available\":1,\n            \"h_status\":\"Online\",\n            \"h_service_catalog_category\":\"\"\n        }</extraParams>\n\t\t<enableRequestTypes>false</enableRequestTypes>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services"
+			},
+			"response": []
+		},
+		{
+			"name": "smSetStatus",
+			"id": "a0abe018-22fa-4773-8cb1-dd835f6d6732",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/Services\" method=\"smSetStatus\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<status>available</status>\n\t\t<statusMessage>This Service is currently Available</statusMessage>\n\t\t<statusMessageDefault>1</statusMessageDefault>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Set the Service Status to Available"
+			},
+			"response": []
+		},
+		{
+			"name": "smUpdateServiceRequestTypeVisibility (IN)",
+			"id": "36df32fe-a284-48d8-a612-b9e3ad5934b4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/Services\" method=\"smUpdateServiceRequestTypeVisibility\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<requestType>Incident</requestType>\n\t\t<isVisible>true</isVisible>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Enable Incident Management on this Service"
+			},
+			"response": []
+		},
+		{
+			"name": "smUpdateServiceRequestTypeVisibility (SR)",
+			"id": "742c6655-b6fa-42b1-bd8c-c222e180b0be",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/Services\" method=\"smUpdateServiceRequestTypeVisibility\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<requestType>Service Request</requestType>\n\t\t<isVisible>true</isVisible>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Enable Incident Management on this Service"
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"id": "5774c887-f56c-48d9-b8d6-7c9815d66def",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/Services\" method=\"update\">\n\t<params>\n\t\t<linkedServiceId>{{service_id}}</linkedServiceId>\n\t\t<incidentPortalHud>stagesAndCheckpoints</incidentPortalHud>\n        <incidentActionVisibility>{\"update\":{\"visible\":true,\"notifyCustomerByEmail\":true},\"callback\":false,\"attach\":true,\"documents\":true,\"link\":true,\"linkedservices\":true,\"email\":true,\"changecustomer\":true,\"assign\":true,\"connections\":true,\"escalate\":true,\"asset\":true,\"board\":false,\"boardsapp\":true,\"solution\":true,\"resolve\":true,\"cancel\":true,\"category\":true}</incidentActionVisibility>\n        <serviceRequestPortalHud>stagesAndCheckpoints</serviceRequestPortalHud>\n        <serviceRequestActionVisibility>{\"update\":{\"visible\":true,\"notifyCustomerByEmail\":true},\"callback\":false,\"attach\":true,\"documents\":true,\"link\":true,\"linkedservices\":true,\"email\":true,\"changecustomer\":true,\"assign\":true,\"connections\":true,\"escalate\":true,\"asset\":true,\"board\":false,\"boardsapp\":true,\"solution\":false,\"resolve\":true,\"cancel\":true,\"category\":true}</serviceRequestActionVisibility>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "For Incident and Service request, sets:\n\n- Stages and Checkpoints Dropdown\n    \n- All the visibility icons"
+			},
+			"response": []
+		},
+		{
+			"name": "smUpdateServicePortalVisibility",
+			"id": "e6d9c023-a392-46f5-8d6a-be07075cc702",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/Services\" method=\"smUpdateServicePortalVisibility\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n        <visibilityStatus>1</visibilityStatus>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Sets the Visibility of the service to portal facing"
+			},
+			"response": []
+		},
+		{
+			"name": "setServiceConnection",
+			"id": "178e77a9-bf91-4882-bc9b-d6f2516bcf0d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceConnections\" method=\"setServiceConnection\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<requestType>Incident</requestType>\n\t\t<requestType>Service Request</requestType>\n\t\t<connectionType>connection.impacted</connectionType>\n\t\t<displayRequest>true</displayRequest>\n\t\t<allowCollaboration>true</allowCollaboration>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Sets the Connections settings on a Service to collaborative"
+			},
+			"response": []
+		},
+		{
+			"name": "addOrUpdateServiceRequestForm (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "34a1a9a2-8a44-46fa-a223-b54d98150296"
+					}
+				}
+			],
+			"id": "4e39d533-5f04-4018-8fae-40c2a5214b9c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceRequestDetails\" method=\"addOrUpdateServiceRequestForm\">\n    <params>\n        <serviceId>{{service_id}}</serviceId>\n        <requestType>Incident</requestType>\n        <serviceRequestForm>&lt;customize&gt;&lt;fields&gt;&lt;field id=\"requestImage\" &gt;&lt;attributes visible=\"false\"&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldA\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"6\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Raising for yourself? (Yes/No)&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldB\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"7\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Affected User ID&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldC\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"8\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Summary Variable&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldD\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"9\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Approver Email&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldE\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"10\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Assign to Yourself (Yes/No)&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldF\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"11\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Impact&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldG\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"12\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Urgency (Yes/No)&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldH\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"13\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Other&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldI\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"14\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Priority&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldJ\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"15\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Category&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldK\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"16\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Request Item&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldL\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"17\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Initial Team&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldM\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"18\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Auto Task Display&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldO\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"19\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Approval ID&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldP\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"20\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Rejection Reason&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldQ\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"21\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Initial Team ID&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldR\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"22\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Application / Component&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldT\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"23\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Approval Type&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField26\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"24\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;MI Auto Task Reference&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField51\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"25\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;OOH Auto Task Reference&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField52\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"26\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Security Incident Auto Task Reference&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField53\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"27\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Security Incident Auto Task Reference2&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;/fields&gt;&lt;sections/&gt;&lt;/customize&gt;</serviceRequestForm>\n    </params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Sets the Connections settings on a Service to collaborative"
+			},
+			"response": []
+		},
+		{
+			"name": "addOrUpdateServiceRequestForm (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "7c8f3b32-ab1f-47c8-b231-e363bdbc9a4e"
+					}
+				}
+			],
+			"id": "26158380-12b8-417e-9755-b0a4577bda76",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceRequestDetails\" method=\"addOrUpdateServiceRequestForm\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<requestType>Service Request</requestType>\n\t\t<serviceRequestForm>&lt;customize&gt;&lt;fields&gt;&lt;field id=\"requestImage\" &gt;&lt;attributes visible=\"false\"&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldA\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"6\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Raising for yourself? (Yes/No)&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldB\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"7\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Affected User ID&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldC\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"8\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Summary Variable&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldD\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"9\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Approver Email&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldE\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"10\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Assign to Yourself (Yes/No)&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldF\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"11\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Impact&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldG\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"12\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Urgency (Yes/No)&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldH\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"13\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Other&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldI\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"14\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Priority&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldJ\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"15\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Category&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldK\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"16\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Rejection Reason&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldO\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"17\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Approval ID&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldP\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"18\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Rejection Reason&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldQ\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"19\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Initial Team ID&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldR\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"20\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Application / Component&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customFieldT\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"21\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Approval Type&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField26\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"22\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;MI Auto Task Reference&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField29\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"23\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Hard IMAC&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField30\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"24\" rowNr=\"0\"&gt;&lt;attributes required=\"true\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Soft IMAC&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField31\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"25\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Agilisys Project Code&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField32\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"26\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Customer Budget Code&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField33\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"27\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;PO number&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField34\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"28\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Associated Costs?&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField35\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"29\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Supplier Costs 1&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField36\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"30\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Supplier Costs 2&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField37\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"31\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Supplier Costs 3&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField38\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"32\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Rate Card Cost&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField39\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"33\" rowNr=\"0\"&gt;&lt;attributes  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Partner Cost&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField50\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"34\" rowNr=\"0\"&gt;&lt;attributes required=\"true\"  type=\"ComboBox\"  formItemStyle=\"added-field\"  labelField=\"itemName\" valueField=\"itemValue\" &gt;&lt;dataProvider&gt;&lt;SimpleListData listName=\"bpmBoolean\" appName=\"com.hornbill.servicemanager\" sortBy=\"\" sortDir=\"\"&gt;&lt;/SimpleListData&gt;&lt;/dataProvider&gt;&lt;label&gt;&lt;en-GB&gt;Was Systrack used for this ticket?&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField51\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"35\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;OOH Auto Task Reference&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField52\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"36\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Security Incident Auto Task Reference&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;field id=\"customField53\" sectionId=\"requestDetailsInternal\" columnIndex=\"0\" rowIndex=\"37\" rowNr=\"0\"&gt;&lt;attributes visible=\"false\"  type=\"TextInput\"  formItemStyle=\"added-field\"&gt;&lt;label&gt;&lt;en-GB&gt;Security Incident Auto Task Reference2&lt;/en-GB&gt;&lt;/label&gt;&lt;/attributes&gt;&lt;/field&gt;&lt;/fields&gt;&lt;sections/&gt;&lt;/customize&gt;</serviceRequestForm>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Sets the Connections settings on a Service to collaborative"
+			},
+			"response": []
+		},
+		{
+			"name": "getServiceRequestConfiguration (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"var dataArray = JSON.parse(jsonData.params.data)",
+							"pm.environment.set(\"entity_id_IN\", dataArray[0].h_id);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "42e1a0d5-df6d-4255-a21b-bd7c3c6ca8b6"
+					}
+				}
+			],
+			"id": "d513cd0f-091d-4d11-8412-621b7f01a68a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceRequestConfiguration\" method=\"getServiceRequestConfiguration\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<requestType>Incident</requestType>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Question 1 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"question_id_IN\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "a8316a68-58b1-41c9-a3d8-346986e78943"
+					}
+				}
+			],
+			"id": "901df8c9-a61e-4605-9d9f-c243a41a0389",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestions\",\"title\":\"h_question\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_question_id\"}</entityObj>\n\t\t<inputTitle>Please rate your overall satisfaction on the service you have received: 10 (Outstanding) to 1 (Poor)</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_requesttype\":\"Incident\",\"h_service_id\":\"{{service_id}}\",\"h_field_required\":true,\"h_field_type\":\"multiOptions\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to create a Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option1 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN1\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "40883828-65eb-4307-ac4b-6bf6a3c82508"
+					}
+				}
+			],
+			"id": "e6fbe22a-d6ce-4a8d-bb7a-814731fa483a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>1</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"1\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option2 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN2\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "6bf29a31-d1c7-4b98-9c1f-53ef0e4bece1"
+					}
+				}
+			],
+			"id": "2bfd2d09-2ae4-41e6-89d3-dcca5af0eeb1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>2</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"2\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option3 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN3\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "9baffa72-e54e-472f-bf8e-7a0f5e67278f"
+					}
+				}
+			],
+			"id": "f7974981-a7cc-46e0-ad6a-a205f7f6f33b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>3</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"3\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option4 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN4\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "15d5bfbe-dc0f-4565-a924-10310a1770ca"
+					}
+				}
+			],
+			"id": "3d2996af-49bf-4fd6-af11-ab114bbf8bc9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>4</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"4\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option5 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN5\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "11ba58cc-1519-41b6-8d9b-21ca6e148b35"
+					}
+				}
+			],
+			"id": "f59c674d-edf9-45eb-8c2d-c1a5322c0c0e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>5</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"5\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option6 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN6\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "493f20bc-e8a7-4bb6-ae8e-66f4e5d0c350"
+					}
+				}
+			],
+			"id": "49fe5505-e118-4234-aeb9-188e055fea2f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>6</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"6\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option7 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN7\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "2103646c-f38d-4ac7-a3d6-6136f217654f"
+					}
+				}
+			],
+			"id": "b66a292a-be13-4991-a4ea-9cb32d0e2b75",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>7</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"7\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option8 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN8\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "26b57d3b-a415-4b16-90b0-7f58c85dd85d"
+					}
+				}
+			],
+			"id": "dbe1fd09-db9e-484f-8c94-cfa3efcb91d1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>8</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"8\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option9 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN9\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "336f0048-c18e-483b-8628-c07242a60e3d"
+					}
+				}
+			],
+			"id": "15b29b85-0499-4d28-a0f7-3dbaaedacff8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>9</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"9\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option10 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_IN10\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "3a2e106c-3982-47ae-84d5-66407fb075fb"
+					}
+				}
+			],
+			"id": "126f0bc6-d0e5-4d1b-a258-d266ef8ddc86",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>10</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_IN}},\"h_input_value\":\"10\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "reorderFeedbackQuestionInputs (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "671fe297-d380-4786-b872-4147eeced880"
+					}
+				}
+			],
+			"id": "2e360a45-c017-4b82-9301-a363c4c8d49f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceFeedbackQuestionInputs\" method=\"reorderFeedbackQuestionInputs\">\n\t<params>\n\t\t<questionInputId>[{{option_id_IN1}},{{option_id_IN2}},{{option_id_IN3}},{{option_id_IN4}},{{option_id_IN5}},{{option_id_IN6}},{{option_id_IN7}},{{option_id_IN8}},{{option_id_IN9}},{{option_id_IN10}}]</questionInputId>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Reorder the Incident Survey Questions"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Question 2 (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "b080399c-2eb4-4bf4-b058-2b194b94b570"
+					}
+				}
+			],
+			"id": "c4e5fc44-b8dc-4f8f-9fba-73ca2793bcac",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestions\",\"title\":\"h_question\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_question_id\"}</entityObj>\n\t\t<inputTitle>Would you like to provide any specific feedback?</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_requesttype\":\"Incident\",\"h_service_id\":\"{{service_id}}\",\"h_field_required\":false,\"h_field_type\":\"multiText\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to create a Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "updateServiceRequestConfiguration (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "86ee558d-f9ef-4f1b-ac2d-cfa57bbcbb2d"
+					}
+				}
+			],
+			"id": "3560785e-830a-4495-a3f6-b11e96192407",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceRequestConfiguration\" method=\"updateServiceRequestConfiguration\">\n\t<params>\n\t\t<entityId>{{entity_id_IN}}</entityId>\n        <enableCustomerQuestion>1</enableCustomerQuestion>\n        <statusCustomerResponse>17</statusCustomerResponse>\n        <statusAutoOffHold>17</statusAutoOffHold>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Set the Survey Questions Toggle to On"
+			},
+			"response": []
+		},
+		{
+			"name": "getServiceRequestConfiguration (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"var dataArray = JSON.parse(jsonData.params.data)",
+							"pm.environment.set(\"entity_id_SR\", dataArray[0].h_id);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "df1d08bc-b7fa-4086-a25b-808556bd48f1"
+					}
+				}
+			],
+			"id": "d1d2cd70-e82c-4445-a737-1c54dfde3fc5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceRequestConfiguration\" method=\"getServiceRequestConfiguration\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<requestType>Service Request</requestType>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Question 1 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"question_id_SR\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "feab360f-fdf6-4899-bae6-1cb3eea67df9"
+					}
+				}
+			],
+			"id": "ff4cfc44-8234-4ef9-ba06-f68d0dca0287",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestions\",\"title\":\"h_question\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_question_id\"}</entityObj>\n\t\t<inputTitle>Please rate your overall satisfaction on the service you have received: 10 (Outstanding) to 1 (Poor)</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_requesttype\":\"Service Request\",\"h_service_id\":\"{{service_id}}\",\"h_field_required\":true,\"h_field_type\":\"multiOptions\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to create a Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option1 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR1\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "5f6e393b-d104-450b-8387-f504d8870f20"
+					}
+				}
+			],
+			"id": "077f47d8-d5a6-4b52-8f3c-c98d5df363b0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>1</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"1\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option2 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR2\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "2fcccfd9-bfff-43b2-8dbe-6c857db3954b"
+					}
+				}
+			],
+			"id": "ff6ea39d-4333-4ccf-b996-4436f4d7007e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>2</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"2\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option3 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR3\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "cb231b83-ce46-42e4-acdc-1b5dbeaa6278"
+					}
+				}
+			],
+			"id": "30784d38-6f3c-41b6-86b8-62536a4715ee",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>3</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"3\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option4 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR4\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "9087c112-6a73-4f15-9e78-c22d5a2782c6"
+					}
+				}
+			],
+			"id": "44f3258c-8f81-4fbb-8870-b712c7a9f552",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>4</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"4\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option5 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR5\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "4cf17383-64fd-4341-878b-6cf733897d5a"
+					}
+				}
+			],
+			"id": "9d122238-8b75-40b1-8a6e-9efa931d8012",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>5</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"5\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option6 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR6\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "f51d040e-4f60-4926-97dc-fb81cce7d953"
+					}
+				}
+			],
+			"id": "202fc88c-aadf-4eaf-baf5-4654e203b965",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>6</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"6\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option7 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR7\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "5ed8cce5-59b4-475d-97e7-ad0e263cdf74"
+					}
+				}
+			],
+			"id": "4aeb7bb2-1d14-459e-a4b2-8e9b762fb053",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>7</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"7\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option8 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR8\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "1c17d6bd-55a6-49e6-8622-24c31d9a40e9"
+					}
+				}
+			],
+			"id": "47b0d740-7323-4129-a8d8-cdbd20571256",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>8</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"8\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option9 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR9\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "7f7b2bb1-41ab-43af-835c-fa3802cf7df0"
+					}
+				}
+			],
+			"id": "a02a3ca1-1b75-4a31-b896-7c6d5545f6d0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>9</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"9\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Option10 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(pm.response.text());",
+							"pm.environment.set(\"option_id_SR10\", jsonData.params.linkedId);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "447fcfe4-5c3e-44ee-8c06-ad1715b042f4"
+					}
+				}
+			],
+			"id": "7f26c610-8727-4fb4-8292-2505bb96a086",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestionInputs\",\"title\":\"h_input_label\",\"description\":\"h_input_value\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_input_id\",\"additionalEntityBrowseParams\":{}}</entityObj>\n\t\t<inputTitle>10</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_question_id\":{{question_id_SR}},\"h_input_value\":\"10\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to add an option to the created Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "reorderFeedbackQuestionInputs (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "8718bcc6-9402-447c-bd7b-b9c7033ecc49"
+					}
+				}
+			],
+			"id": "7347989a-dc56-4c35-8a08-893e778d7ec0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceFeedbackQuestionInputs\" method=\"reorderFeedbackQuestionInputs\">\n\t<params>\n\t\t<questionInputId>[{{option_id_SR1}},{{option_id_SR2}},{{option_id_SR3}},{{option_id_SR4}},{{option_id_SR5}},{{option_id_SR6}},{{option_id_SR7}},{{option_id_SR8}},{{option_id_SR9}},{{option_id_SR10}}]</questionInputId>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Reorder the Service Request Survey Questions"
+			},
+			"response": []
+		},
+		{
+			"name": "translateCreate - Survey Question 2 (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "67fe9add-3182-4a7c-94fc-2aee1fe7aab0"
+					}
+				}
+			],
+			"id": "9c5b5786-e90b-4a58-b1ef-90beccb8cb1f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager\" method=\"translateCreate\">\n\t<params>\n\t\t<entityObj>{\"name\":\"ServiceFeedbackQuestions\",\"title\":\"h_question\",\"entityColumn\":\"h_id\",\"linkedColumn\":\"h_question_id\"}</entityObj>\n\t\t<inputTitle>Would you like to provide any specific feedback?</inputTitle>\n\t\t<inputDescription></inputDescription>\n\t\t<userLanguage>en-GB</userLanguage>\n\t\t<createEng>false</createEng>\n\t\t<extraParams>{\"h_requesttype\":\"Service Request\",\"h_service_id\":\"{{service_id}}\",\"h_field_required\":false,\"h_field_type\":\"multiText\"}</extraParams>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Used to create a Survey Question"
+			},
+			"response": []
+		},
+		{
+			"name": "updateServiceRequestConfiguration (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "8a796b91-bbf4-41bf-b099-16ecaa7e0863"
+					}
+				}
+			],
+			"id": "feaa340d-2e7c-47cc-b32a-c3592bc52f1e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceRequestConfiguration\" method=\"updateServiceRequestConfiguration\">\n\t<params>\n\t\t<entityId>{{entity_id_SR}}</entityId>\n        <enableCustomerQuestion>1</enableCustomerQuestion>\n        <statusCustomerResponse>17</statusCustomerResponse>\n        <statusAutoOffHold>17</statusAutoOffHold>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/Services",
+				"description": "Set the Survey Questions Toggle to On"
+			},
+			"response": []
+		},
+		{
+			"name": "smAddServiceLevelServiceEntry (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "9c0a40f0-8477-424d-9f75-cd0cf5050c24"
+					}
+				}
+			],
+			"id": "b2674865-da08-4b64-a571-feed4aed152a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceLevelAgreementService\" method=\"smAddServiceLevelServiceEntry\">\n\t<params>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<serviceName>Bob Service Blue</serviceName>\n\t\t<serviceLevelServiceId>[{\"text\":\"Internal Support\",\"h_id\":\"1\",\"servicelevel_name\":\"Internal Support\",\"servicelevel_description\":\"Service Level Agreement for defining all internal support terms agreed by IT with the business\"}]</serviceLevelServiceId>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/ServiceLevelAgreementService",
+				"description": "Add the Incident SLA to the Service"
+			},
+			"response": []
+		},
+		{
+			"name": "smAddServiceLevelServiceEntry (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "8152092f-1cc7-47cc-9a94-115156a71926"
+					}
+				}
+			],
+			"id": "58b69d00-2263-4ce9-af59-c4a01fdc4756",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceLevelAgreementService\" method=\"smAddServiceLevelServiceEntry\">\n    <params>\n        <serviceId>{{service_id}}</serviceId>\n        <serviceName>Bob Service Blue</serviceName>\n        <serviceLevelServiceId>[{\"text\":\"Bob SLA\",\"h_id\":\"12\",\"servicelevel_name\":\"Bob SLA\",\"servicelevel_description\":\"Bob SLA\"}]</serviceLevelServiceId>\n    </params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/ServiceLevelAgreementService",
+				"description": "Add the ServiceRequest SLA to the Service"
+			},
+			"response": []
+		},
+		{
+			"name": "create - Service Level Rules (IN)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"id": "b1735baa-0626-444c-b208-f835ca66ecf1"
+					}
+				}
+			],
+			"id": "19ed25b9-d241-4d9c-85d0-5fd6570b4bef",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceLevelRules\" method=\"create\">\n\t<params>\n\t\t<name>Incident Rule</name>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<serviceLevelAgreementId>1</serviceLevelAgreementId>\n\t\t<ruleData>[{\"conditionType\":\"all\",\"id\":0.31002332242980524,\"column\":{\"data\":\"h_requesttype\",\"name\":\"user.view.requests.dataGrid.requestType\",\"default\":\"Request Type\",\"control\":{\"type\":\"requestTypeSelector\"},\"filterType\":\"equality\"},\"value\":[{\"display\":\"Incident\",\"data\":\"Incident\"}],\"conditions\":[{\"label\":\"is\",\"data\":\"Equals\",\"order\":\"1\",\"requires\":true},{\"label\":\"is not\",\"data\":\"NotEquals\",\"order\":\"2\",\"requires\":true}],\"operation\":{\"label\":\"is\",\"data\":\"Equals\",\"order\":\"1\",\"requires\":true},\"error\":false}]</ruleData>\n\t\t<requestType>all</requestType>\n\t\t<processingOrder>0</processingOrder>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/ServiceLevelRules\n",
+				"description": "Add the Incident Rule to the Service"
+			},
+			"response": []
+		},
+		{
+			"name": "create - Service Level Rules (SR)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d0fc803e-bee7-4c8f-9d40-573def2cb7da",
+						"exec": [
+							"pm.execution.setNextRequest(null)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "2b3367e9-1a79-42a5-938c-939b92321abc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xmlmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<methodCall service=\"apps/com.hornbill.servicemanager/ServiceLevelRules\" method=\"create\">\n\t<params>\n\t\t<name>Service Request Rule</name>\n\t\t<serviceId>{{service_id}}</serviceId>\n\t\t<serviceLevelAgreementId>12</serviceLevelAgreementId>\n\t\t<ruleData>[{\"conditionType\":\"all\",\"id\":0.31002332242980524,\"column\":{\"data\":\"h_requesttype\",\"name\":\"user.view.requests.dataGrid.requestType\",\"default\":\"Request Type\",\"control\":{\"type\":\"requestTypeSelector\"},\"filterType\":\"equality\"},\"value\":[{\"display\":\"Service Request\",\"data\":\"Service Request\"}],\"conditions\":[{\"label\":\"is\",\"data\":\"Equals\",\"order\":\"2\",\"requires\":true},{\"label\":\"is not\",\"data\":\"NotEquals\",\"order\":\"2\",\"requires\":true}],\"operation\":{\"label\":\"is\",\"data\":\"Equals\",\"order\":\"1\",\"requires\":true},\"error\":false}]</ruleData>\n\t\t<requestType>all</requestType>\n\t\t<processingOrder>0</processingOrder>\n\t</params>\n</methodCall>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": "{{ENDPOINT}}xmlmc/apps/com.hornbill.servicemanager/ServiceLevelRules\n",
+				"description": "Add the Service Request Rule to the Service"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": {
+			"key": "Authorization",
+			"value": "ESP-APIKEY {{APIKEY}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				],
+				"id": "f6f9a99b-dd3c-4387-878f-80d3bd15d59a"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				],
+				"id": "672f5968-7fe8-4ca6-bc1e-352ca42efdf5"
+			}
+		}
+	]
+}
