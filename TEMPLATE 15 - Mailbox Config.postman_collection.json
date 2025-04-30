@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "567ffeb0-d079-469d-bba8-7d2152166992",
+		"name": "TEMPLATE 15 - Mailbox Config",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38936177"
+	},
+	"item": [
+		{
+			"name": "mailboxAddressAdd",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"@service\": \"mailadmin\",\n  \"@method\": \"mailboxAddressAdd\",\n  \"params\": {\n    \"mailbox\": \"helpdesk\",\n    \"domainName\": \"live.hornbill.com\",\n    \"prefix\": \"support-bobdemo\"\n}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ENDPOINT}}xmlmc/mailadmin",
+					"host": [
+						"{{ENDPOINT}}xmlmc"
+					],
+					"path": [
+						"mailadmin"
+					]
+				},
+				"description": "Invoke this operation to assign one or more roles to the specified user. When adding one or more roles for the application,  \t\t\tif there are enough free subscriptions available for the application then this will also add application subscription for this user.\n\n[View the admin:userAddRole API documentation in the Hornbill Documentation Library](https://docs.hornbill.com/esp-api-api/services/admin/userAddRole)"
+			},
+			"response": []
+		},
+		{
+			"name": "userAddRole - Admin Account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "prefer",
+						"value": "transient",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"@service\": \"admin\",\n  \"@method\": \"userAddRole\",\n  \"params\": {\n    \"userId\": \"Hornbill_admin\",\n    \"role\": [\n      \"Admin Role\",\n      \"Advanced Reporting Admin\",\n      \"User Role\",\n      \"Service Desk Admin\",\n      \"Asset Management Admin\",\n      \"Services Manager\",  \n      \"Docmanager Admin\",\n      \"Docmanager Library User\",\n      \"Board Super User\",\n      \"Supplier Administrator\",\n      \"Config Manager Admin\"\n    ]\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ENDPOINT}}xmlmc/admin",
+					"host": [
+						"{{ENDPOINT}}xmlmc"
+					],
+					"path": [
+						"admin"
+					]
+				},
+				"description": "Invoke this operation to assign one or more roles to the specified user. When adding one or more roles for the application,  \t\t\tif there are enough free subscriptions available for the application then this will also add application subscription for this user.\n\n[View the admin:userAddRole API documentation in the Hornbill Documentation Library](https://docs.hornbill.com/esp-api-api/services/admin/userAddRole)"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "ESP-APIKEY {{APIKEY}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
