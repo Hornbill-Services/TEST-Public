@@ -1,0 +1,47 @@
+name: Set-Up Basis
+
+on:        
+  workflow_call:
+    # Inputs the workflow accepts.
+    inputs:
+      instance_id:
+        description: 'Instance ID'
+        required: true
+        type: string
+      api_key:
+        description: 'API Key'
+        required: true
+        type: string
+
+jobs:
+  set_up_test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Mask API Key
+      run: |
+        API_KEY=$(jq -r '.inputs.api_key' $GITHUB_EVENT_PATH)
+        echo ::add-mask::$API_KEY
+        echo API_KEY=$API_KEY >> $GITHUB_ENV
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4.0.4
+      with:
+        node-version: 20.x
+        
+    - name: Checkout Template Content
+      uses: actions/checkout@v4
+      
+    - name: Checkout Script Library
+      uses: actions/checkout@v4
+      with:
+        repository: Hornbill-Services/Library
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        path: ./script_library
+
+    - name: Install Script Dependencies
+      run: |
+        cd ./script_library/source/common
+        npm install
+        cd ../update_settings
+        npm install
